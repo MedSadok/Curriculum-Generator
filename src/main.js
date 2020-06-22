@@ -15,6 +15,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
 
+
 new Vue({
     render: h => h(App)
 }).$mount("#app");

@@ -5,7 +5,7 @@
 
       <div class="col-lg-3 col-md-3 col-12 cv-form">
         <form method="post">
-          <div class="form-row">
+          <div class="form-row" v-for="(app, index) in applicant" :key="index">
             <div class="form-group col-md-6">
               <label for="Name">Name</label>
               <input
@@ -13,7 +13,7 @@
                 class="form-control"
                 id="Name"
                 placeholder="Name"
-                v-model.lazy="name"
+                v-model.lazy="app.name"
               />
             </div>
             <div class="form-group col-md-6">
@@ -23,11 +23,15 @@
                 class="form-control"
                 id="posteTitle"
                 placeholder="poste Title"
-                v-model.lazy="PosteTitle"
+                v-model.lazy="app.PosteTitle"
               />
             </div>
           </div>
-          <div class="form-group" v-for="(contact, index) in contactList" :key="index">
+          <div
+            class="form-group"
+            v-for="(contact, index) in contactList"
+            :key="index"
+          >
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="contactName">Contact Name</label>
@@ -36,7 +40,7 @@
                   class="form-control"
                   id="contactName"
                   placeholder="contactName"
-                  v-model="contact.contactName"
+                  v-model.lazy="contact.contactName"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -46,66 +50,195 @@
                   class="form-control"
                   id="ContactValue"
                   placeholder="ContactValue"
-                  v-model="contact.value"
+                  v-model.lazy="contact.value"
                 />
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addContact">Add Contact</button>
-          <div class="form-group" v-for="(personal,index) in personality" :key="index">
+          <button class="btn btn-success" @click.prevent="addContact">
+            Add Contact
+          </button>
+          <div class="form-group" v-for="(personal, i) in personality" :key="i">
             <label for="personality">personality</label>
             <input
               type="text"
               class="form-control mb-2"
               id="personality"
               placeholder="describe yourself"
-              v-model="personal.personalDiscription"
+              v-model.lazy="personal.personalDiscription"
             />
           </div>
-          <button class="btn btn-success" @click.prevent="addPersonality">Add Personality</button>
-          <div class="form-row">
-            <div class="form-group col-md-8">
+          <button class="btn btn-success" @click.prevent="addPersonality">
+            Add Personality
+          </button>
+          <div class="form-row" v-for="(language, i) in languages" :key="i">
+            <div class="form-group col-md-7">
               <label for="language">language</label>
               <input
                 type="text"
                 class="form-control"
                 id="Language"
-                v-model="languages"
+                placeholder="Language"
+                v-model.lazy="language.languageName"
               />
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-5">
               <label for="languageLevel">Level</label>
-              <select id="languageLevel" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
+              <input
+                type="text"
+                pattern="\d*"
+                minlength="2"
+                maxlength="3"
+                class="form-control"
+                id="LanguageLevel"
+                placeholder="Language Level"
+                v-model.lazy="language.level"
+              />
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-8">
+          <button class="btn btn-success" @click.prevent="addLanguage">
+            Add Language
+          </button>
+          <div class="form-row" v-for="(skill, i) in skills" :key="i">
+            <div class="form-group col-md-7">
               <label for="skill">skill</label>
               <input
                 type="text"
                 class="form-control"
                 id="skill"
-                v-model="skills"
+                placeholder="Skill"
+                v-model.lazy="skill.skillName"
               />
             </div>
-            <div class="form-group col-md-4">
-              <label for="skillLevel">Level</label>
-              <select id="skillLevel" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
+            <div class="form-group col-md-5">
+              <label for="languageLevel">Level</label>
+              <input
+                type="text"
+                pattern="\d*"
+                minlength="2"
+                maxlength="3"
+                class="form-control"
+                id="skillLevel"
+                placeholder="Skill Level"
+                v-model.number="skill.level"
+              />
             </div>
           </div>
+          <button class="btn btn-success" @click.prevent="addSkill">
+            Add Skill
+          </button>
+          <div
+            class="form-group"
+            v-for="(edu, index) in Education"
+            :key="index"
+          >
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="startDate">start date</label>
+                <input
+                  type="month"
+                  class="form-control"
+                  placeholder="Start Year"
+                  name="startdate"
+                  v-model.lazy="edu.startDate"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="endDare">End Date</label>
+                <input
+                  type="month"
+                  class="form-control"
+                  placeholder="End Year"
+                  v-model.lazy="edu.endDate"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Establishemebt"
+                  v-model.lazy="edu.establishement"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="posteTitle">Poste Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Diploma"
+                  v-model.lazy="edu.diploma"
+                />
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-success" @click.prevent="addEducation">
+            Add Education
+          </button>
+          <div
+            class="form-group"
+            v-for="(exp, index) in Experience"
+            :key="index"
+          >
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="startDate">start date</label>
+                <input
+                  type="month"
+                  class="form-control"
+                  placeholder="Start Year"
+                  name="startdate"
+                  v-model.lazy="exp.startDate"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="endDare">End Date</label>
+                <input
+                  type="month"
+                  class="form-control"
+                  placeholder="End Year"
+                  v-model.lazy="exp.endDate"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Name">Company</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company"
+                  v-model.lazy="exp.company"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="posteTitle">Poste Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Poste Title"
+                  v-model.lazy="exp.posteTitle"
+                />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="Tasks">Tasks</label>
+                <textarea
+                  class="form-control"
+                  id="Tasks"
+                  rows="5"
+                  v-model.lazy="exp.tasks"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-success" @click.prevent="addExperience">
+            Add Experience
+          </button>
           <div class="form-group">
             <label for="CoverLetter">Cover Letter</label>
             <textarea
               class="form-control"
               id="CoverLetter"
               rows="5"
-              v-model="CoverLetter"
+              v-model.lazy="CoverLetter"
             ></textarea>
           </div>
           <div class="form-group">
@@ -114,14 +247,14 @@
               class="form-control"
               id="Personal"
               rows="5"
-              v-model="Personal"
+              v-model.lazy="Personal"
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-primary text-light" @click.prevent="addCv()">
+          <!-- <button type="submit" class="btn btn-primary text-light" @click.prevent="addCv()">
             Submit
-          </button>
+          </button> -->
         </form>
-        <button class="btn btn-outline-success mt-5" @click="exportPDF">
+        <button class="btn btn-outline-success mt-2" @click="exportPDF">
           <i class="fas fa-file-pdf mr-2"></i>
           <span>Download book as PDF</span>
         </button>
@@ -129,7 +262,7 @@
 
       <!-- The Curriculum output -->
 
-      <div class="col-lg-9 col-md-9 col-12 px-5">
+      <div class="col-lg-9 col-md-9 col-12 px-5 py-3">
         <div class="row" ref="content">
           <div class="col-lg-4 col-md-4 col-12 p-0 left-side">
             <div class="avatar">
@@ -158,20 +291,49 @@
                       <hr />
                     </div>
                   </div>
-                  <div class="d-flex flex-column" v-for="(contact, index) in contactList" :key="index">
+                  <div
+                    class="d-flex flex-column"
+                    v-if="
+                      contactList[0].contactName.length == 0 &&
+                        contactList[0].value.length == 0
+                    "
+                  >
+                    <div class="d-flex align-items-baseline">
+                      <span class="text-capitilaze mr-3">Skype: </span>
+                      <a class="mb-0">gonor201075</a>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <span class="text-capitilaze mr-3">Phone: </span>
+                      <a class="mb-0">+45 698 095 64 36</a>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <span class="text-capitilaze mr-3">Email: </span>
+                      <a class="mb-0">adam_williams@gmail.org</a>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <span class="text-capitilaze mr-3">FB</span>
+                      <a class="mb-0">facebook.com/adam_williams</a>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex flex-column"
+                    v-else
+                    v-for="(contact, k) in contactList"
+                    :key="k"
+                  >
                     <div class="d-flex align-items-baseline">
                       <span class="text-capitilaze mr-3">{{
                         contact.contactName
                       }}</span>
-                      <a :href="contact.value" class="mb-0">{{ contact.value }}</a>
+                      <a :href="contact.value" class="mb-0">{{
+                        contact.value
+                      }}</a>
                     </div>
                   </div>
                 </div>
               </section>
               <section>
-                <div
-                  class="d-flex flex-column justify-content-between personality"
-                >
+                <div class="d-flex flex-column justify-content-between">
                   <div class="row section-title align-items-center">
                     <div class="col-lg-7 col-md-7 col-12">
                       <h2 class="text-uppercase">personality</h2>
@@ -180,15 +342,28 @@
                       <hr />
                     </div>
                   </div>
-                  <ul v-for="(personal, i) in personality" :key="i">
-                    <li> {{ personal.personalDiscription }} </li>
+                  <ul
+                    class="personality"
+                    v-if="personality[0].personalDiscription.length == 0"
+                  >
+                    <li>Communicative</li>
+                    <li>Punctuality</li>
+                    <li>Creativity</li>
+                    <li>Organized</li>
+                    <li>Communicative</li>
+                    <li>Punctuality</li>
+                    <li>Creativity</li>
+                    <li>Organized</li>
+                  </ul>
+                  <ul class="personality" v-else>
+                    <li v-for="(personal, i) in personality" :key="i">
+                      {{ personal.personalDiscription }}
+                    </li>
                   </ul>
                 </div>
               </section>
               <section>
-                <div
-                  class="d-flex flex-column justify-content-between personality"
-                >
+                <div class="d-flex flex-column justify-content-between">
                   <div class="row section-title align-items-center">
                     <div class="col-lg-7 col-md-7 col-12">
                       <h2 class="text-uppercase">Languages</h2>
@@ -197,13 +372,18 @@
                       <hr />
                     </div>
                   </div>
-                  <ul>
+                  <ul
+                    v-if="
+                      languages[0].languageName.length == 0 &&
+                        languages[0].level.length == 0
+                    "
+                  >
                     <li class="row language align-items-center">
                       <div class="col-lg-4 col-md-4 col-6">
                         <span>Arabic</span>
                       </div>
                       <div class="col-lg-8 col-md-8 col-6">
-                        <label class="level mb-0" style="width: 100%"></label>
+                        <label class="level" style="width: 100%"></label>
                       </div>
                     </li>
                     <li class="row language align-items-center">
@@ -211,7 +391,7 @@
                         <span>French</span>
                       </div>
                       <div class="col-lg-8 col-md-8 col-6">
-                        <label class="level mb-0" style="width: 50%"></label>
+                        <label class="level" style="width: 50%"></label>
                       </div>
                     </li>
                     <li class="row language align-items-center">
@@ -219,7 +399,7 @@
                         <span>English</span>
                       </div>
                       <div class="col-lg-8 col-md-8 col-6">
-                        <label class="level mb-0" style="width: 70%"></label>
+                        <label class="level" style="width: 70%"></label>
                       </div>
                     </li>
                     <li class="row language align-items-center">
@@ -227,7 +407,24 @@
                         <span>German</span>
                       </div>
                       <div class="col-lg-8 col-md-8 col-6">
-                        <label class="level mb-0" style="width: 20%"></label>
+                        <label class="level" style="width: 20%"></label>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul v-else>
+                    <li
+                      class="row language align-items-center"
+                      v-for="(language, i) in languages"
+                      :key="i"
+                    >
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <span>{{ language.languageName }}</span>
+                      </div>
+                      <div class="col-lg-8 col-md-8 col-6">
+                        <label
+                          class="level"
+                          :style="{ width: language.level + '%' }"
+                        ></label>
                       </div>
                     </li>
                   </ul>
@@ -245,9 +442,24 @@
                     <hr />
                   </div>
                 </div>
-                <div class="cv-header">
-                  <h1 class="text-uppercase">{{ name }}</h1>
-                  <small class="text-uppercase">{{ PosteTitle }}</small>
+                <div
+                  class="cv-header"
+                  v-if="
+                    applicant[0].name.length == 0 &&
+                      applicant[0].PosteTitle.length == 0
+                  "
+                >
+                  <h1 class="text-uppercase">ophelia stevenson</h1>
+                  <small class="text-uppercase">graphic and web designe</small>
+                </div>
+                <div
+                  class="cv-header"
+                  v-else
+                  v-for="(app, index) in applicant"
+                  :key="index"
+                >
+                  <h1 class="text-uppercase">{{ app.name }}</h1>
+                  <small class="text-uppercase">{{ app.PosteTitle }}</small>
                 </div>
               </div>
             </section>
@@ -261,7 +473,47 @@
                     <hr />
                   </div>
                 </div>
-                <div class="row px-3 align-items-baseline w-100">
+                <div
+                  class="row px-3 align-items-baseline w-100"
+                  v-if="CoverLetter.length == 0"
+                >
+                  <div class="d-flex flex-column justify-content-end ">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Commodi voluptates recusandae sit corrupti quod, laborum
+                      neque consequatur delectus vero ratione quasi non quis
+                      ipsum cum aperiam deleniti, minus culpa ipsa?
+                    </p>
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Commodi voluptates recusandae sit corrupti quod, laborum
+                      neque consequatur delectus vero ratione quasi non quis
+                      ipsum cum aperiam deleniti, minus culpa ipsa?
+                    </p>
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Commodi voluptates recusandae sit corrupti quod, laborum
+                      neque consequatur delectus vero ratione quasi non quis
+                      ipsum cum aperiam deleniti, minus culpa ipsa?
+                    </p>
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Commodi voluptates recusandae sit corrupti quod, laborum
+                      neque consequatur delectus vero ratione quasi non quis
+                      ipsum cum aperiam deleniti, minus culpa ipsa?
+                    </p>
+                    <div
+                      class="d-flex flex-column align-items-end"
+                     
+                    >
+                    <h4 class="text-uppercase" v-if="applicant[0].name.length == 0">Applicant Name</h4>
+                      <h4 class="text-uppercase" v-else v-for="(app, index) in applicant"
+                      :key="index">{{ app.name }}</h4>
+                      <small>12 November 2020</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row px-3 align-items-baseline w-100" v-else>
                   <div class="d-flex flex-column justify-content-end ">
                     <p>
                       {{ CoverLetter }}
@@ -282,7 +534,26 @@
                     <hr />
                   </div>
                 </div>
-                <div class="row px-3 align-items-baseline">
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="Personal.length == 0"
+                >
+                  <div class="d-flex flex-column justify-content-end">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Vitae placeat cumque suscipit quo commodi eaque qui, alias
+                      culpa pariatur nobis. Magni aut aperiam assumenda est
+                      ducimus cumque, porro commodi unde?
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Vitae placeat cumque suscipit quo commodi eaque qui, alias
+                      culpa pariatur nobis. Magni aut aperiam assumenda est
+                      ducimus cumque, porro commodi unde?
+                    </p>
+                  </div>
+                </div>
+                <div class="row px-3 align-items-baseline" v-else>
                   <div class="d-flex flex-column justify-content-end">
                     <p>{{ Personal }}</p>
                   </div>
@@ -297,22 +568,16 @@
                     <hr />
                   </div>
                 </div>
-                <div class="row px-3 align-items-baseline">
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2011-2012</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Lorem Ipsum</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline">
+
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="
+                    Education[0].startDate.length == 0 &&
+                      Education[0].endDate.length == 0 &&
+                      Education[0].establishement.length == 0 &&
+                      Education[0].diploma.length == 0
+                  "
+                >
                   <div class="col-lg-3 col-md-3 col-12">
                     <span class="date">2012-2014</span>
                   </div>
@@ -327,7 +592,15 @@
                     </p>
                   </div>
                 </div>
-                <div class="row px-3 align-items-baseline">
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="
+                    Education[0].startDate.length == 0 &&
+                      Education[0].endDate.length == 0 &&
+                      Education[0].establishement.length == 0 &&
+                      Education[0].diploma.length == 0
+                  "
+                >
                   <div class="col-lg-3 col-md-3 col-12">
                     <span class="date">2014-2016</span>
                   </div>
@@ -339,6 +612,24 @@
                       nesciunt maxime sunt, qui, eos enim magnam itaque
                       reiciendis! Dignissimos autem, totam error maiores
                       recusandae provident.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-else
+                  v-for="(edu, index) in Education"
+                  :key="index"
+                >
+                  <div class="col-lg-3 col-md-3 col-12">
+                    <span class="date"
+                      >{{ edu.startDate }}- {{ edu.endDate }}</span
+                    >
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-12">
+                    <h3 class="text-uppercase">{{ edu.establishement }}</h3>
+                    <p class="text-capitalize">
+                      {{ edu.diploma }}
                     </p>
                   </div>
                 </div>
@@ -352,48 +643,95 @@
                     <hr />
                   </div>
                 </div>
-                <div class="row px-3 align-items-baseline">
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2011-2012</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Workname</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline">
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2012-2014</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Workname</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline">
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="
+                    Experience[0].startDate.length == 0 &&
+                      Experience[0].endDate.length == 0 &&
+                      Experience[0].company.length == 0 &&
+                      Experience[0].posteTitle.length == 0 &&
+                      Experience[0].tasks.length == 0
+                  "
+                >
                   <div class="col-lg-3 col-md-3 col-12">
                     <span class="date">2014-2016</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Workname</h3>
+                    <h3>Poste Title at Workname</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
                       nesciunt maxime sunt, qui, eos enim magnam itaque
                       reiciendis! Dignissimos autem, totam error maiores
                       recusandae provident.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="
+                    Experience[0].startDate.length == 0 &&
+                      Experience[0].endDate.length == 0 &&
+                      Experience[0].company.length == 0 &&
+                      Experience[0].posteTitle.length == 0 &&
+                      Experience[0].tasks.length == 0
+                  "
+                >
+                  <div class="col-lg-3 col-md-3 col-12">
+                    <span class="date">2012-2014</span>
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-12">
+                    <h3>Poste Title at Workname</h3>
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Repudiandae voluptas aspernatur molestiae quasi eius
+                      nesciunt maxime sunt, qui, eos enim magnam itaque
+                      reiciendis! Dignissimos autem, totam error maiores
+                      recusandae provident.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-if="
+                    Experience[0].startDate.length == 0 &&
+                      Experience[0].endDate.length == 0 &&
+                      Experience[0].company.length == 0 &&
+                      Experience[0].posteTitle.length == 0 &&
+                      Experience[0].tasks.length == 0
+                  "
+                >
+                  <div class="col-lg-3 col-md-3 col-12">
+                    <span class="date">2014-2016</span>
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-12">
+                    <h3>Poste Title at Workname</h3>
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Repudiandae voluptas aspernatur molestiae quasi eius
+                      nesciunt maxime sunt, qui, eos enim magnam itaque
+                      reiciendis! Dignissimos autem, totam error maiores
+                      recusandae provident.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="row px-3 align-items-baseline"
+                  v-else
+                  v-for="(exp, index) in Experience"
+                  :key="index"
+                >
+                  <div class="col-lg-3 col-md-3 col-12">
+                    <span class="date"
+                      >{{ exp.startDate }}- {{ exp.endDate }}</span
+                    >
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-12">
+                    <h3 class="text-uppercase">
+                      {{ exp.posteTitle }} at {{ exp.company }}
+                    </h3>
+                    <p class="text-capitalize">
+                      {{ exp.tasks }}
                     </p>
                   </div>
                 </div>
@@ -407,7 +745,13 @@
                     <hr />
                   </div>
                 </div>
-                <div class="d-flex justify-content-around flex-wrap">
+                <div
+                  class="d-flex justify-content-around flex-wrap"
+                  v-if="
+                    skills[0].skillName.length == 0 &&
+                      skills[0].level.length == 0
+                  "
+                >
                   <vue-circle
                     :progress="90"
                     :size="130"
@@ -420,11 +764,9 @@
                     insert-mode="append"
                     :thickness="12"
                     :show-percent="false"
-                    @vue-circle-progress="progress"
-                    @vue-circle-end="progress_end"
                   >
-                    <span>AI</span>
-                    <small>Adobe Illustrator</small>
+                    <span>Adobe Illustrator</span>
+                    <!-- <small>Adobe Illustrator</small> -->
                   </vue-circle>
                   <vue-circle
                     :progress="50"
@@ -438,11 +780,9 @@
                     insert-mode="append"
                     :thickness="12"
                     :show-percent="false"
-                    @vue-circle-progress="progress"
-                    @vue-circle-end="progress_end"
                   >
-                    <span>PSD</span>
-                    <small>Adobe Photoshop</small>
+                    <span>Adobe Photoshop</span>
+                    <!-- <small>Adobe Photoshop</small> -->
                   </vue-circle>
                   <vue-circle
                     :progress="65"
@@ -456,11 +796,9 @@
                     insert-mode="append"
                     :thickness="12"
                     :show-percent="false"
-                    @vue-circle-progress="progress"
-                    @vue-circle-end="progress_end"
                   >
-                    <span>AE</span>
-                    <small>Adobe after effect</small>
+                    <span>Adobe after effect</span>
+                    <!-- <small>Adobe after effect</small> -->
                   </vue-circle>
                   <vue-circle
                     :progress="80"
@@ -474,11 +812,28 @@
                     insert-mode="append"
                     :thickness="12"
                     :show-percent="false"
-                    @vue-circle-progress="progress"
-                    @vue-circle-end="progress_end"
                   >
-                    <span>ID</span>
-                    <small>Adobe InDesign</small>
+                    <span>Adobe InDesign</span>
+                    <!-- <small>Adobe InDesign</small> -->
+                  </vue-circle>
+                </div>
+                <div class="d-flex justify-content-around flex-wrap" v-else>
+                  <vue-circle
+                    v-for="(skill, index) in skills"
+                    :key="index"
+                    :progress="75"
+                    :size="130"
+                    :reverse="false"
+                    line-cap="round"
+                    :fill="fill"
+                    empty-fill="rgba(0, 0, 0, .3)"
+                    :animation-start-value="0.0"
+                    :start-angle="0"
+                    insert-mode="append"
+                    :thickness="12"
+                    :show-percent="false"
+                  >
+                    <span>{{ skill.skillName }}</span>
                   </vue-circle>
                 </div>
               </section>
@@ -505,8 +860,12 @@ export default {
   data() {
     return {
       date: "",
-      name: "Applicant Name",
-      PosteTitle: "Post Title",
+      applicant: [
+        {
+          name: "",
+          PosteTitle: "",
+        },
+      ],
       CoverLetter: "",
       Personal: "",
       contactList: [
@@ -534,13 +893,12 @@ export default {
           endDate: "",
           company: "",
           posteTitle: "",
-          tasks: [],
+          tasks: "",
         },
       ],
       skills: [
         {
           skillName: "",
-          skillShortName: "",
           level: "",
         },
       ],
@@ -550,31 +908,10 @@ export default {
           level: "",
         },
       ],
-      newCV: {
-        applicant_name: "",
-        applicant_job_title: ""
-      },
-      // currentCV: {},
       fill: { color: "#000" },
     };
   },
-  mounted: function() {
-    this.addCv();
-  },
   methods: {
-    // getCV() {
-    //   axios
-    //     .get("http://localhost/cv-vue/src/backend/api.php?action=read")
-    //     .then((res) => {
-    //       if (res.data.error) {
-    //         this.errorMsg = res.data.message;
-    //       } else {
-    //         console.log(res.data);
-    //       }
-    //     });
-    // },
-    progress(progress, stepValue) {},
-    progress_end() {},
     onChange() {
       console.log("New picture selected!");
       if (this.$refs.pictureInput.image) {
@@ -592,58 +929,73 @@ export default {
           var width = doc.internal.pageSize.getWidth();
           var height = doc.internal.pageSize.getHeight();
           doc.addImage(img, "PNG", 0, 0, width, height);
-          doc.save("book.pdf");
+          doc.save("Curriculum Vitae.pdf");
         })
         .catch(function(error) {
           console.error("something went wrong!", error);
         });
     },
-    addCv(){
-      const formData = this.toFormData(this.newCV);
-      axios.post("http://localhost/cv-vue/src/backend/api.php?action=create", formData).then(res => {
-        this.newCV = { applicant_name: "", applicant_job_title:""};
-        if (res.data.error) {
-          this.errorMsg = res.data.message;
-        } else {
-          this.successMsg = res.data.message;
-        }
+    addContact: function() {
+      this.contactList.push({
+        contactName: "",
+        value: "",
+        empty: false,
       });
     },
-    addContact: function(){
-      this.contactList.push({
-        contactName: '',
-        value: ''
-      })
-    },
-    addPersonality: function(){
+    addPersonality: function() {
       this.personality.push({
-       personalDiscription: ''
-      })
+        personalDiscription: "",
+      });
     },
-    toFormData(obj) {
-      const fd = new FormData();
-      for (const i in obj) {
-        fd.append(i, obj[i]);
-      }
-      return fd;
-    }
+    addLanguage: function() {
+      this.languages.push({
+        languageName: "",
+        level: "",
+      });
+    },
+
+    addSkill: function() {
+      this.skills.push({
+        skillName: "",
+        level: "",
+      });
+    },
+    addEducation: function() {
+      this.Education.push({
+        startDate: "",
+        endDate: "",
+        establishement: "",
+        diploma: "",
+      });
+    },
+    addEducation: function() {
+      this.Experience.push({
+        startDate: "",
+        endDate: "",
+        company: "",
+        posteTitle: "",
+        tasks: "",
+      });
+    },
   },
-  computed: {
-    convertToString(){
-      var str = getElementById('personality').value;
-      this.personality = str.split('');
-    }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .cv-form {
   background-color: #0d324c;
+  padding: 15vh 24px;
   label {
     color: #fff;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-size: 18px;
+  }
+}
+
+a {
+  color: #a2a2a2;
+  &:hover {
+    color: #fff;
   }
 }
 .picture-input .btn:not(:disabled):not(.disabled) {
@@ -667,6 +1019,10 @@ section {
   }
 }
 
+.form-group {
+  margin-bottom: 8px;
+}
+
 hr {
   width: 150px;
   height: 2.5px;
@@ -678,14 +1034,33 @@ hr {
 }
 .language {
   .level {
-    border: 2px solid #d72626;
+    background-color: #861e1e;
     height: 20px;
+    margin-bottom: 4px;
   }
 }
 h2 {
   color: #d72626;
   font-weight: 700;
   font-size: 24px;
+}
+.personality {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  ul {
+    width: 50%;
+  }
+}
+ul.personality {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 0px;
+  li {
+    width: 50%;
+    margin-bottom: 4px;
+  }
 }
 ul {
   padding-left: 0;
@@ -701,6 +1076,8 @@ ul {
   color: #a2a2a2;
   span {
     font-size: 16px;
+    font-weight: 700;
+    display: flex;
   }
   hr {
     width: 75%;
@@ -731,14 +1108,12 @@ h3 {
   text-align: center;
   padding: 14px 0px;
   span {
-    font-size: 21px;
-    font-weight: 700;
-  }
-  small {
-    font-size: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    width: 75%;
   }
 }
-
 .contact {
   label {
     word-break: break-word;
