@@ -4,8 +4,9 @@
       <!-- The Form Input fields -->
 
       <div class="col-lg-3 col-md-3 col-12 cv-form">
+        <h1 class="text-uppercase">Enter your data here:</h1>
         <form method="post">
-          <div class="form-row" v-for="(app, index) in applicant" :key="index">
+          <div class="form-row" v-for="(app, a) in applicant" :key="a">
             <div class="form-group col-md-6">
               <label for="Name">Name</label>
               <input
@@ -13,7 +14,7 @@
                 class="form-control"
                 id="Name"
                 placeholder="Name"
-                v-model.lazy="app.name"
+                v-model="app.name"
               />
             </div>
             <div class="form-group col-md-6">
@@ -23,16 +24,12 @@
                 class="form-control"
                 id="posteTitle"
                 placeholder="poste Title"
-                v-model.lazy="app.PosteTitle"
+                v-model="app.PosteTitle"
               />
             </div>
           </div>
-          <div
-            class="form-group"
-            v-for="(contact, index) in contactList"
-            :key="index"
-          >
-            <div class="form-row">
+          <div class="form-group">
+            <div class="form-row" v-for="(contact, c) in contactList" :key="c">
               <div class="form-group col-md-6">
                 <label for="contactName">Contact Name</label>
                 <input
@@ -40,7 +37,7 @@
                   class="form-control"
                   id="contactName"
                   placeholder="contactName"
-                  v-model.lazy="contact.contactName"
+                  v-model="contact.contactName"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -50,7 +47,7 @@
                   class="form-control"
                   id="ContactValue"
                   placeholder="ContactValue"
-                  v-model.lazy="contact.value"
+                  v-model="contact.value"
                 />
               </div>
             </div>
@@ -58,81 +55,83 @@
           <button class="btn btn-success" @click.prevent="addContact">
             Add Contact
           </button>
-          <div class="form-group" v-for="(personal, i) in personality" :key="i">
+          <div class="form-group">
             <label for="personality">personality</label>
             <input
+              v-for="(personal, i) in personality"
+              :key="i"
               type="text"
               class="form-control mb-2"
               id="personality"
               placeholder="describe yourself"
-              v-model.lazy="personal.personalDiscription"
+              v-model="personal.personalDiscription"
             />
           </div>
           <button class="btn btn-success" @click.prevent="addPersonality">
             Add Personality
           </button>
-          <div class="form-row" v-for="(language, i) in languages" :key="i">
-            <div class="form-group col-md-7">
-              <label for="language">language</label>
-              <input
-                type="text"
-                class="form-control"
-                id="Language"
-                placeholder="Language"
-                v-model.lazy="language.languageName"
-              />
-            </div>
-            <div class="form-group col-md-5">
-              <label for="languageLevel">Level</label>
-              <input
-                type="text"
-                pattern="\d*"
-                minlength="2"
-                maxlength="3"
-                class="form-control"
-                id="LanguageLevel"
-                placeholder="Language Level"
-                v-model.lazy="language.level"
-              />
+          <div class="form-group">
+            <div class="form-row" v-for="(language, l) in languages" :key="l">
+              <div class="form-group col-md-7">
+                <label for="language">language</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Language"
+                  placeholder="Language"
+                  v-model="language.languageName"
+                />
+              </div>
+              <div class="form-group col-md-5">
+                <label for="languageLevel">Level</label>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  minlength="2"
+                  maxlength="3"
+                  class="form-control"
+                  id="LanguageLevel"
+                  placeholder="Language Level"
+                  v-model="language.level"
+                />
+              </div>
             </div>
           </div>
           <button class="btn btn-success" @click.prevent="addLanguage">
             Add Language
           </button>
-          <div class="form-row" v-for="(skill, i) in skills" :key="i">
-            <div class="form-group col-md-7">
-              <label for="skill">skill</label>
-              <input
-                type="text"
-                class="form-control"
-                id="skill"
-                placeholder="Skill"
-                v-model.lazy="skill.skillName"
-              />
-            </div>
-            <div class="form-group col-md-5">
-              <label for="languageLevel">Level</label>
-              <input
-                type="text"
-                pattern="\d*"
-                minlength="2"
-                maxlength="3"
-                class="form-control"
-                id="skillLevel"
-                placeholder="Skill Level"
-                v-model.number="skill.level"
-              />
+          <div class="form-group">
+            <div class="form-row" v-for="(skill, s) in skills" :key="s">
+              <div class="form-group col-md-7">
+                <label for="skill">skill</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="skill"
+                  placeholder="Skill"
+                  v-model="skill.skillName"
+                />
+              </div>
+              <div class="form-group col-md-5">
+                <label for="languageLevel">Level</label>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  minlength="2"
+                  maxlength="3"
+                  class="form-control"
+                  id="skillLevel"
+                  placeholder="Skill Level"
+                  v-model="skill.level"
+                />
+              </div>
             </div>
           </div>
           <button class="btn btn-success" @click.prevent="addSkill">
             Add Skill
           </button>
-          <div
-            class="form-group"
-            v-for="(edu, index) in Education"
-            :key="index"
-          >
-            <div class="form-row">
+          <div class="form-group">
+            <div class="form-row" v-for="(edu, e) in Education" :key="e">
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
@@ -140,7 +139,7 @@
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
-                  v-model.lazy="edu.startDate"
+                  v-model="edu.startDate"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -149,25 +148,25 @@
                   type="month"
                   class="form-control"
                   placeholder="End Year"
-                  v-model.lazy="edu.endDate"
+                  v-model="edu.endDate"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label for="Name">Name</label>
+                <label for="Establishement">Establishement</label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Establishemebt"
-                  v-model.lazy="edu.establishement"
+                  placeholder="Establishement"
+                  v-model="edu.establishement"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label for="posteTitle">Poste Title</label>
+                <label for="diploma">Diploma</label>
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Diploma"
-                  v-model.lazy="edu.diploma"
+                  v-model="edu.diploma"
                 />
               </div>
             </div>
@@ -175,12 +174,8 @@
           <button class="btn btn-success" @click.prevent="addEducation">
             Add Education
           </button>
-          <div
-            class="form-group"
-            v-for="(exp, index) in Experience"
-            :key="index"
-          >
-            <div class="form-row">
+          <div class="form-group">
+            <div class="form-row" v-for="(exp, ex) in Experience" :key="ex">
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
@@ -188,7 +183,7 @@
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
-                  v-model.lazy="exp.startDate"
+                  v-model="exp.startDate"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -197,7 +192,7 @@
                   type="month"
                   class="form-control"
                   placeholder="End Year"
-                  v-model.lazy="exp.endDate"
+                  v-model="exp.endDate"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -206,7 +201,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Company"
-                  v-model.lazy="exp.company"
+                  v-model="exp.company"
                 />
               </div>
               <div class="form-group col-md-6">
@@ -215,7 +210,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Poste Title"
-                  v-model.lazy="exp.posteTitle"
+                  v-model="exp.posteTitle"
                 />
               </div>
               <div class="form-group col-md-12">
@@ -224,7 +219,7 @@
                   class="form-control"
                   id="Tasks"
                   rows="5"
-                  v-model.lazy="exp.tasks"
+                  v-model="exp.tasks"
                 ></textarea>
               </div>
             </div>
@@ -238,7 +233,7 @@
               class="form-control"
               id="CoverLetter"
               rows="5"
-              v-model.lazy="CoverLetter"
+              v-model="CoverLetter"
             ></textarea>
           </div>
           <div class="form-group">
@@ -247,12 +242,12 @@
               class="form-control"
               id="Personal"
               rows="5"
-              v-model.lazy="Personal"
+              v-model="Personal"
             ></textarea>
           </div>
           <!-- <button type="submit" class="btn btn-primary text-light" @click.prevent="addCv()">
             Submit
-          </button> -->
+          </button>-->
         </form>
         <button class="btn btn-outline-success mt-2" @click="exportPDF">
           <i class="fas fa-file-pdf mr-2"></i>
@@ -268,7 +263,7 @@
             <div class="avatar">
               <picture-input
                 ref="pictureInput"
-                accept="image/jpeg,image/png"
+                accept="image/jpeg, image/png"
                 size="10"
                 :hideChangeButton="true"
                 :removable="false"
@@ -277,8 +272,7 @@
                   drag: 'Drag an image or click here to select one',
                   aspect: 'Landscape/Portrait',
                 }"
-              >
-              </picture-input>
+              ></picture-input>
             </div>
             <div class="px-4 my-3">
               <section>
@@ -299,15 +293,15 @@
                     "
                   >
                     <div class="d-flex align-items-baseline">
-                      <span class="text-capitilaze mr-3">Skype: </span>
+                      <span class="text-capitilaze mr-3">Skype:</span>
                       <a class="mb-0">gonor201075</a>
                     </div>
                     <div class="d-flex align-items-baseline">
-                      <span class="text-capitilaze mr-3">Phone: </span>
+                      <span class="text-capitilaze mr-3">Phone:</span>
                       <a class="mb-0">+45 698 095 64 36</a>
                     </div>
                     <div class="d-flex align-items-baseline">
-                      <span class="text-capitilaze mr-3">Email: </span>
+                      <span class="text-capitilaze mr-3">Email:</span>
                       <a class="mb-0">adam_williams@gmail.org</a>
                     </div>
                     <div class="d-flex align-items-baseline">
@@ -315,19 +309,16 @@
                       <a class="mb-0">facebook.com/adam_williams</a>
                     </div>
                   </div>
-                  <div
-                    class="d-flex flex-column"
-                    v-else
-                    v-for="(contact, k) in contactList"
-                    :key="k"
-                  >
-                    <div class="d-flex align-items-baseline">
+                  <div class="d-flex flex-column" v-else>
+                    <div
+                      class="d-flex align-items-baseline"
+                      v-for="(contact, k) in contactList"
+                      :key="k"
+                    >
                       <span class="text-capitilaze mr-3">{{
                         contact.contactName
                       }}</span>
-                      <a :href="contact.value" class="mb-0">{{
-                        contact.value
-                      }}</a>
+                      <a class="mb-0">{{ contact.value }}</a>
                     </div>
                   </div>
                 </div>
@@ -435,7 +426,7 @@
 
           <div class="col-lg-8 col-md-8 col-12 bg-gray pt-5 right-side">
             <section>
-              <div class="text-center text-uppercase ">
+              <div class="text-center text-uppercase">
                 <div class="row align-items-center">
                   <div class="col-lg-5 col-md-5 col-12"></div>
                   <div class="col-lg-7 col-md-7 col-12">
@@ -477,7 +468,7 @@
                   class="row px-3 align-items-baseline w-100"
                   v-if="CoverLetter.length == 0"
                 >
-                  <div class="d-flex flex-column justify-content-end ">
+                  <div class="d-flex flex-column justify-content-end">
                     <p>
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Commodi voluptates recusandae sit corrupti quod, laborum
@@ -502,22 +493,28 @@
                       neque consequatur delectus vero ratione quasi non quis
                       ipsum cum aperiam deleniti, minus culpa ipsa?
                     </p>
-                    <div
-                      class="d-flex flex-column align-items-end"
-                     
-                    >
-                    <h4 class="text-uppercase" v-if="applicant[0].name.length == 0">Applicant Name</h4>
-                      <h4 class="text-uppercase" v-else v-for="(app, index) in applicant"
-                      :key="index">{{ app.name }}</h4>
+                    <div class="d-flex flex-column align-items-end">
+                      <h4
+                        class="text-uppercase"
+                        v-if="applicant[0].name.length == 0"
+                      >
+                        Applicant Name
+                      </h4>
+                      <h4
+                        class="text-uppercase"
+                        v-else
+                        v-for="(app, index) in applicant"
+                        :key="index"
+                      >
+                        {{ app.name }}
+                      </h4>
                       <small>12 November 2020</small>
                     </div>
                   </div>
                 </div>
                 <div class="row px-3 align-items-baseline w-100" v-else>
-                  <div class="d-flex flex-column justify-content-end ">
-                    <p>
-                      {{ CoverLetter }}
-                    </p>
+                  <div class="d-flex flex-column justify-content-end">
+                    <p>{{ CoverLetter }}</p>
                     <div class="d-flex flex-column align-items-end">
                       <h4>Applicant Name</h4>
                       <small>12 November 2020</small>
@@ -559,7 +556,8 @@
                   </div>
                 </div>
               </section>
-              <section>
+
+              <section class="item">
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
                     <h2 class="text-uppercase">education</h2>
@@ -615,26 +613,27 @@
                     </p>
                   </div>
                 </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-else
-                  v-for="(edu, index) in Education"
-                  :key="index"
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date"
-                      >{{ edu.startDate }}- {{ edu.endDate }}</span
+                <draggable draggble="item" :list="Education" ghost-class="ghost" :animation="200" v-else>
+                  <transition-group type="transition" name="flip-list">
+                    <div
+                      class="row px-3 align-items-baseline"
+                      v-for="(edu, index) in Education"
+                      :key="index"
                     >
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="text-uppercase">{{ edu.establishement }}</h3>
-                    <p class="text-capitalize">
-                      {{ edu.diploma }}
-                    </p>
-                  </div>
-                </div>
+                      <div class="col-lg-3 col-md-3 col-12">
+                        <span class="date"
+                          >{{ edu.startDate }} - {{ edu.endDate }}</span
+                        >
+                      </div>
+                      <div class="col-lg-9 col-md-9 col-12">
+                        <h3 class="text-uppercase">{{ edu.establishement }}</h3>
+                        <p class="text-capitalize">{{ edu.diploma }}</p>
+                      </div>
+                    </div>
+                  </transition-group>
+                </draggable>
               </section>
-              <section>
+              <section class="item">
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
                     <h2 class="text-uppercase">experience</h2>
@@ -715,27 +714,29 @@
                     </p>
                   </div>
                 </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-else
-                  v-for="(exp, index) in Experience"
-                  :key="index"
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date"
-                      >{{ exp.startDate }}- {{ exp.endDate }}</span
+                <draggable draggble="item" :list="Education" ghost-class="ghost" :animation="200" v-else>
+                  <transition-group type="transition" name="flip-list">
+                    <div
+                      class="row px-3 align-items-baseline"
+                      v-for="(exp, index) in Experience"
+                      :key="index"
                     >
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="text-uppercase">
-                      {{ exp.posteTitle }} at {{ exp.company }}
-                    </h3>
-                    <p class="text-capitalize">
-                      {{ exp.tasks }}
-                    </p>
-                  </div>
-                </div>
+                      <div class="col-lg-3 col-md-3 col-12">
+                        <span class="date"
+                          >{{ exp.startDate }}- {{ exp.endDate }}</span
+                        >
+                      </div>
+                      <div class="col-lg-9 col-md-9 col-12">
+                        <h3 class="text-uppercase">
+                          {{ exp.posteTitle }} at {{ exp.company }}
+                        </h3>
+                        <p class="text-capitalize">{{ exp.tasks }}</p>
+                      </div>
+                    </div>
+                  </transition-group>
+                </draggable>
               </section>
+
               <section>
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
@@ -753,7 +754,7 @@
                   "
                 >
                   <vue-circle
-                    :progress="90"
+                    :progress="100"
                     :size="130"
                     :reverse="false"
                     line-cap="round"
@@ -765,11 +766,11 @@
                     :thickness="12"
                     :show-percent="false"
                   >
-                    <span>Adobe Illustrator</span>
+                    <span>HTML5</span>
                     <!-- <small>Adobe Illustrator</small> -->
                   </vue-circle>
                   <vue-circle
-                    :progress="50"
+                    :progress="100"
                     :size="130"
                     :reverse="false"
                     line-cap="round"
@@ -781,7 +782,7 @@
                     :thickness="12"
                     :show-percent="false"
                   >
-                    <span>Adobe Photoshop</span>
+                    <span>CSS3</span>
                     <!-- <small>Adobe Photoshop</small> -->
                   </vue-circle>
                   <vue-circle
@@ -797,7 +798,7 @@
                     :thickness="12"
                     :show-percent="false"
                   >
-                    <span>Adobe after effect</span>
+                    <span>JavaScript</span>
                     <!-- <small>Adobe after effect</small> -->
                   </vue-circle>
                   <vue-circle
@@ -813,7 +814,7 @@
                     :thickness="12"
                     :show-percent="false"
                   >
-                    <span>Adobe InDesign</span>
+                    <span>jQuery</span>
                     <!-- <small>Adobe InDesign</small> -->
                   </vue-circle>
                 </div>
@@ -821,7 +822,7 @@
                   <vue-circle
                     v-for="(skill, index) in skills"
                     :key="index"
-                    :progress="75"
+                    :progress="skills.level"
                     :size="130"
                     :reverse="false"
                     line-cap="round"
@@ -852,9 +853,11 @@ import VueCircle from "vue2-circle-progress";
 import PictureInput from "vue-picture-input";
 import jsPDF from "jspdf";
 import DomToImage from "dom-to-image";
+import draggable from "vuedraggable";
 export default {
   components: {
     VueCircle,
+    draggable,
     PictureInput,
   },
   data() {
@@ -968,7 +971,7 @@ export default {
         diploma: "",
       });
     },
-    addEducation: function() {
+    addExperience: function() {
       this.Experience.push({
         startDate: "",
         endDate: "",
@@ -984,7 +987,13 @@ export default {
 <style lang="scss" scoped>
 .cv-form {
   background-color: #0d324c;
-  padding: 15vh 24px;
+  padding: 24px;
+  h1 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 48;
+    margin-bottom: 40px;
+  }
   label {
     color: #fff;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -1117,6 +1126,28 @@ h3 {
 .contact {
   label {
     word-break: break-word;
+  }
+}
+
+.right-side .sortable-drag {
+  opacity: 0;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+
+.sortable-chosen {
+  cursor: grab;
+}
+
+.ghost {
+  background-color: #d72626;
+  opacity: 0.7;
+  span,
+  h3,
+  p {
+    color: #fff;
   }
 }
 
