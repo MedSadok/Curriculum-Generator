@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <div class="row">
       <!-- The Form Input fields -->
-
       <div class="col-lg-3 col-md-3 col-12 cv-form">
         <h1 class="text-uppercase">Enter your data here:</h1>
         <form method="post">
@@ -122,7 +121,7 @@
                   class="form-control"
                   id="skillLevel"
                   placeholder="Skill Level"
-                  v-model="skill.level"
+                  v-model.number="skill.level"
                 />
               </div>
             </div>
@@ -135,7 +134,7 @@
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
-                  type="month"
+                  type="date"
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
@@ -145,7 +144,7 @@
               <div class="form-group col-md-6">
                 <label for="endDare">End Date</label>
                 <input
-                  type="month"
+                  type="date"
                   class="form-control"
                   placeholder="End Year"
                   v-model="edu.endDate"
@@ -179,7 +178,7 @@
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
-                  type="month"
+                  type="date"
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
@@ -189,7 +188,7 @@
               <div class="form-group col-md-6">
                 <label for="endDare">End Date</label>
                 <input
-                  type="month"
+                  type="date"
                   class="form-control"
                   placeholder="End Year"
                   v-model="exp.endDate"
@@ -230,7 +229,7 @@
           <div class="form-group">
             <label for="CoverLetter">Cover Letter</label>
             <textarea
-              class="form-control"
+              class="form-control text"
               id="CoverLetter"
               rows="5"
               v-model="CoverLetter"
@@ -239,7 +238,7 @@
           <div class="form-group">
             <label for="Personal">Personal Description</label>
             <textarea
-              class="form-control"
+              class="form-control text"
               id="Personal"
               rows="5"
               v-model="Personal"
@@ -508,7 +507,10 @@
                       >
                         {{ app.name }}
                       </h4>
-                      <small>12 November 2020</small>
+                      <small>{{
+                        new Date()
+                          | dateFormat("DD MMMM YYYY", dateFormatConfig)
+                      }}</small>
                     </div>
                   </div>
                 </div>
@@ -613,12 +615,18 @@
                     </p>
                   </div>
                 </div>
-                <draggable draggble="item" :list="Education" ghost-class="ghost" :animation="200" v-else>
+                <draggable
+                  draggble="item"
+                  
+                  ghost-class="ghost"
+                  :animation="200"
+                  v-else
+                >
                   <transition-group type="transition" name="flip-list">
                     <div
                       class="row px-3 align-items-baseline"
-                      v-for="(edu, index) in Education"
-                      :key="index"
+                      v-for="(edu, i) in Education"
+                      :key="i"
                     >
                       <div class="col-lg-3 col-md-3 col-12">
                         <span class="date"
@@ -714,12 +722,18 @@
                     </p>
                   </div>
                 </div>
-                <draggable draggble="item" :list="Education" ghost-class="ghost" :animation="200" v-else>
+                <draggable
+                  draggble="item"
+                 
+                  ghost-class="ghost"
+                  :animation="200"
+                  v-else
+                >
                   <transition-group type="transition" name="flip-list">
                     <div
                       class="row px-3 align-items-baseline"
-                      v-for="(exp, index) in Experience"
-                      :key="index"
+                      v-for="(exp, e) in Experience"
+                      :key="e"
                     >
                       <div class="col-lg-3 col-md-3 col-12">
                         <span class="date"
@@ -753,89 +767,42 @@
                       skills[0].level.length == 0
                   "
                 >
-                  <vue-circle
-                    :progress="100"
-                    :size="130"
-                    :reverse="false"
-                    line-cap="round"
-                    :fill="fill"
-                    empty-fill="rgba(0, 0, 0, .3)"
-                    :animation-start-value="0.0"
-                    :start-angle="0"
-                    insert-mode="append"
-                    :thickness="12"
-                    :show-percent="false"
+                  <div
+                    class="d-flex flex-column justify-content-center align-items-center position-relative"
+                    v-for="(s, index) in skills"
+                    :key="index"
                   >
-                    <span>HTML5</span>
-                    <!-- <small>Adobe Illustrator</small> -->
-                  </vue-circle>
-                  <vue-circle
-                    :progress="100"
-                    :size="130"
-                    :reverse="false"
-                    line-cap="round"
-                    :fill="fill"
-                    empty-fill="rgba(0, 0, 0, .3)"
-                    :animation-start-value="0.0"
-                    :start-angle="0"
-                    insert-mode="append"
-                    :thickness="12"
-                    :show-percent="false"
-                  >
-                    <span>CSS3</span>
-                    <!-- <small>Adobe Photoshop</small> -->
-                  </vue-circle>
-                  <vue-circle
-                    :progress="65"
-                    :size="130"
-                    :reverse="false"
-                    line-cap="round"
-                    :fill="fill"
-                    empty-fill="rgba(0, 0, 0, .3)"
-                    :animation-start-value="0.0"
-                    :start-angle="0"
-                    insert-mode="append"
-                    :thickness="12"
-                    :show-percent="false"
-                  >
-                    <span>JavaScript</span>
-                    <!-- <small>Adobe after effect</small> -->
-                  </vue-circle>
-                  <vue-circle
-                    :progress="80"
-                    :size="130"
-                    :reverse="false"
-                    line-cap="round"
-                    :fill="fill"
-                    empty-fill="rgba(0, 0, 0, .3)"
-                    :animation-start-value="0.0"
-                    :start-angle="0"
-                    insert-mode="append"
-                    :thickness="12"
-                    :show-percent="false"
-                  >
-                    <span>jQuery</span>
-                    <!-- <small>Adobe InDesign</small> -->
-                  </vue-circle>
+                    <circle-slider
+                      v-model="s.level"
+                      circle-color="rgba(0, 0, 0, .3)"
+                      progress-color="#000"
+                      knob-color="transparent"
+                      circleWidth="10"
+                      progressWidth="10"
+                      class="progress-circle"
+                    >
+                    </circle-slider>
+                    <span class="skillName">{{ s.skillName }}</span>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-around flex-wrap" v-else>
-                  <vue-circle
+                  <div
+                    class="d-flex flex-column justify-content-center align-items-center position-relative"
                     v-for="(skill, index) in skills"
                     :key="index"
-                    :progress="skills.level"
-                    :size="130"
-                    :reverse="false"
-                    line-cap="round"
-                    :fill="fill"
-                    empty-fill="rgba(0, 0, 0, .3)"
-                    :animation-start-value="0.0"
-                    :start-angle="0"
-                    insert-mode="append"
-                    :thickness="12"
-                    :show-percent="false"
                   >
-                    <span>{{ skill.skillName }}</span>
-                  </vue-circle>
+                    <circle-slider
+                      v-model="skill.level"
+                      circle-color="rgba(0, 0, 0, .3)"
+                      progress-color="#000"
+                      knob-color="transparent"
+                      :circleWidth="10"
+                      :progressWidth="10"
+                      class="progress-circle"
+                    >
+                    </circle-slider>
+                    <span class="skillName">{{ skill.skillName }}</span>
+                  </div>
                 </div>
               </section>
             </div>
@@ -862,7 +829,6 @@ export default {
   },
   data() {
     return {
-      date: "",
       applicant: [
         {
           name: "",
@@ -901,8 +867,20 @@ export default {
       ],
       skills: [
         {
-          skillName: "",
-          level: "",
+          skillName: "JavaScript",
+          level: 60,
+        },
+        {
+          skillName: "jQuery",
+          level: 70,
+        },
+        {
+          skillName: "HTML5",
+          level: 100,
+        },
+        {
+          skillName: "CSS3",
+          level: 90,
         },
       ],
       languages: [
@@ -912,6 +890,46 @@ export default {
         },
       ],
       fill: { color: "#000" },
+      dateFormatConfig: {
+        dayOfWeekNames: [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        dayOfWeekNamesShort: ["Su", "Mo", "Tu", "We", "Tr", "Fr", "Sa"],
+        monthNames: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ],
+        monthNamesShort: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+      },
     };
   },
   methods: {
@@ -979,8 +997,13 @@ export default {
         posteTitle: "",
         tasks: "",
       });
-    },
+    }
   },
+  computed:{
+    parsedBody(){
+      return this.Experience[0].tasks.replace(/\n/g,"<br>")
+    }
+  }
 };
 </script>
 
@@ -1149,6 +1172,15 @@ h3 {
   p {
     color: #fff;
   }
+}
+
+.skillName {
+  position: absolute;
+  top: 40%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 767px) {
