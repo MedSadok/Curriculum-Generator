@@ -134,7 +134,7 @@
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
-                  type="date"
+                  type="month"
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
@@ -144,7 +144,7 @@
               <div class="form-group col-md-6">
                 <label for="endDare">End Date</label>
                 <input
-                  type="date"
+                  type="month"
                   class="form-control"
                   placeholder="End Year"
                   v-model="edu.endDate"
@@ -178,7 +178,7 @@
               <div class="form-group col-md-6">
                 <label for="startDate">start date</label>
                 <input
-                  type="date"
+                  type="month"
                   class="form-control"
                   placeholder="Start Year"
                   name="startdate"
@@ -188,7 +188,7 @@
               <div class="form-group col-md-6">
                 <label for="endDare">End Date</label>
                 <input
-                  type="date"
+                  type="month"
                   class="form-control"
                   placeholder="End Year"
                   v-model="exp.endDate"
@@ -248,17 +248,51 @@
             Submit
           </button>-->
         </form>
-        <button class="btn btn-outline-success mt-2" @click="exportPDF">
+        <button class="btn btn-outline-success mt-2 mb-4" @click="exportPDF">
           <i class="fas fa-file-pdf mr-2"></i>
           <span>Download book as PDF</span>
         </button>
+        <div class="wrap d-flex flex-column align-items-start">
+          <label>Choose left background olor</label>
+          <ejs-colorpicker
+            value="#131313"
+            :columns="4"
+            :inline="false"
+            :showButtons="false"
+            :modeSwitcher="false"
+            :beforeTileRender="tileRender"
+            :change="onChangeBg"
+          ></ejs-colorpicker>
+        </div>
+        <div class="wrap d-flex flex-column align-items-start">
+          <label>Choose Right background color</label>
+          <ejs-colorpicker
+            value="#fff"
+            :inline="false"
+            :showButtons="false"
+            :modeSwitcher="false"
+            :change="pageBg"
+          ></ejs-colorpicker>
+        </div>
+        <div class="wrap d-flex flex-column align-items-start">
+          <label>Choose font-Color</label>
+          <ejs-colorpicker
+            value="#d72626"
+            :columns="4"
+            :inline="false"
+            :showButtons="false"
+            :modeSwitcher="false"
+            :beforeTileRender="tileRender"
+            :change="onChangeFont"
+          ></ejs-colorpicker>
+        </div>
       </div>
 
       <!-- The Curriculum output -->
 
       <div class="col-lg-9 col-md-9 col-12 px-5 py-3">
         <div class="row" ref="content">
-          <div class="col-lg-4 col-md-4 col-12 p-0 left-side">
+          <div class="col-lg-4 col-md-4 col-12 p-0 left-side" id="preview">
             <div class="avatar">
               <picture-input
                 ref="pictureInput"
@@ -278,7 +312,7 @@
                 <div class="contact">
                   <div class="row section-title align-items-center">
                     <div class="col-lg-7 col-md-7 col-12">
-                      <h2 class="text-uppercase">Contact</h2>
+                      <h2 class="h2-title text-uppercase">Contact</h2>
                     </div>
                     <div class="col-lg-5 col-md-5 col-12">
                       <hr />
@@ -326,7 +360,7 @@
                 <div class="d-flex flex-column justify-content-between">
                   <div class="row section-title align-items-center">
                     <div class="col-lg-7 col-md-7 col-12">
-                      <h2 class="text-uppercase">personality</h2>
+                      <h2 class="h2-title text-uppercase">personality</h2>
                     </div>
                     <div class="col-lg-5 col-md-5 col-12">
                       <hr />
@@ -356,7 +390,7 @@
                 <div class="d-flex flex-column justify-content-between">
                   <div class="row section-title align-items-center">
                     <div class="col-lg-7 col-md-7 col-12">
-                      <h2 class="text-uppercase">Languages</h2>
+                      <h2 class="h2-title text-uppercase">Languages</h2>
                     </div>
                     <div class="col-lg-5 col-md-5 col-12">
                       <hr />
@@ -457,10 +491,17 @@
               <section>
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="text-uppercase">Cover Letter</h2>
+                    <h2 class="h2-title text-uppercase">Cover Letter</h2>
                   </div>
-                  <div class="col-lg-7 col-md-7 col-12">
+                  <div
+                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                  >
                     <hr />
+                    <vue-fontawesome
+                      icon="trash"
+                      size="1"
+                      color="#d72626"
+                    ></vue-fontawesome>
                   </div>
                 </div>
                 <div
@@ -527,10 +568,17 @@
               <section>
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="text-uppercase">personal</h2>
+                    <h2 class="h2-title text-uppercase">personal</h2>
                   </div>
-                  <div class="col-lg-7 col-md-7 col-12">
+                  <div
+                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                  >
                     <hr />
+                    <vue-fontawesome
+                      icon="trash"
+                      size="1"
+                      color="#d72626"
+                    ></vue-fontawesome>
                   </div>
                 </div>
                 <div
@@ -559,13 +607,21 @@
                 </div>
               </section>
 
-              <section class="item">
+              <section class="item" v-show="show">
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="text-uppercase">education</h2>
+                    <h2 class="h2-title text-uppercase">education</h2>
                   </div>
-                  <div class="col-lg-7 col-md-7 col-12">
+                  <div
+                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                  >
                     <hr />
+                    <vue-fontawesome
+                      icon="trash"
+                      size="1"
+                      color="#d72626"
+                      @click="show = !show"
+                    ></vue-fontawesome>
                   </div>
                 </div>
 
@@ -582,7 +638,7 @@
                     <span class="date">2012-2014</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Lorem Ipsum</h3>
+                    <h3 class="h2-title">Lorem Ipsum</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
@@ -605,7 +661,7 @@
                     <span class="date">2014-2016</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Lorem Ipsum</h3>
+                    <h3 class="h2-title">Lorem Ipsum</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
@@ -617,7 +673,6 @@
                 </div>
                 <draggable
                   draggble="item"
-                  
                   ghost-class="ghost"
                   :animation="200"
                   v-else
@@ -634,20 +689,30 @@
                         >
                       </div>
                       <div class="col-lg-9 col-md-9 col-12">
-                        <h3 class="text-uppercase">{{ edu.establishement }}</h3>
+                        <h3 class="h2-title text-uppercase">
+                          {{ edu.establishement }}
+                        </h3>
                         <p class="text-capitalize">{{ edu.diploma }}</p>
                       </div>
                     </div>
                   </transition-group>
                 </draggable>
               </section>
-              <section class="item">
+              <section class="item" v-show="show">
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="text-uppercase">experience</h2>
+                    <h2 class="h2-title text-uppercase">experience</h2>
                   </div>
-                  <div class="col-lg-7 col-md-7 col-12">
+                  <div
+                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                  >
                     <hr />
+                    <vue-fontawesome
+                      icon="trash"
+                      size="1"
+                      color="#d72626"
+                      @click="show = !show"
+                    ></vue-fontawesome>
                   </div>
                 </div>
                 <div
@@ -664,7 +729,7 @@
                     <span class="date">2014-2016</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Poste Title at Workname</h3>
+                    <h3 class="h2-title">Poste Title at Workname</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
@@ -688,7 +753,7 @@
                     <span class="date">2012-2014</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Poste Title at Workname</h3>
+                    <h3 class="h2-title">Poste Title at Workname</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
@@ -712,7 +777,7 @@
                     <span class="date">2014-2016</span>
                   </div>
                   <div class="col-lg-9 col-md-9 col-12">
-                    <h3>Poste Title at Workname</h3>
+                    <h3 class="h2-title">Poste Title at Workname</h3>
                     <p>
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Repudiandae voluptas aspernatur molestiae quasi eius
@@ -724,7 +789,6 @@
                 </div>
                 <draggable
                   draggble="item"
-                 
                   ghost-class="ghost"
                   :animation="200"
                   v-else
@@ -741,7 +805,7 @@
                         >
                       </div>
                       <div class="col-lg-9 col-md-9 col-12">
-                        <h3 class="text-uppercase">
+                        <h3 class="h2-title text-uppercase">
                           {{ exp.posteTitle }} at {{ exp.company }}
                         </h3>
                         <p class="text-capitalize">{{ exp.tasks }}</p>
@@ -754,10 +818,17 @@
               <section>
                 <div class="row section-title align-items-center">
                   <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="text-uppercase">skills</h2>
+                    <h2 class="h2-title text-uppercase">skills</h2>
                   </div>
-                  <div class="col-lg-7 col-md-7 col-12">
+                  <div
+                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                  >
                     <hr />
+                    <vue-fontawesome
+                      icon="trash"
+                      size="1"
+                      color="#d72626"
+                    ></vue-fontawesome>
                   </div>
                 </div>
                 <div
@@ -815,20 +886,24 @@
 
 <script>
 /* eslint-disable */
-import axios from "axios";
-import VueCircle from "vue2-circle-progress";
+// import axios from "axios";
+// import VueCircle from "vue2-circle-progress";
 import PictureInput from "vue-picture-input";
 import jsPDF from "jspdf";
 import DomToImage from "dom-to-image";
 import draggable from "vuedraggable";
+import VueCircleSlider from "vue-circle-slider";
+import ColorPickerPlugin from "@syncfusion/ej2-vue-inputs";
 export default {
   components: {
-    VueCircle,
+    VueCircleSlider,
     draggable,
     PictureInput,
+    ColorPickerPlugin,
   },
   data() {
     return {
+      show: true,
       applicant: [
         {
           name: "",
@@ -941,6 +1016,29 @@ export default {
         console.log("FileReader API not supported: use the <form>, Luke!");
       }
     },
+    onChangeBg: function(args) {
+      document.getElementById("preview").style.backgroundColor =
+        args.currentValue.hex;
+    },
+    onChangeFont: function(args) {
+      var x = document.querySelectorAll("h1, .h2-title");
+      var y = document.querySelectorAll("hr, .language .level");
+      var i, j;
+      for (i = 0; i < x.length; i++) {
+        x[i].style.color = args.currentValue.hex;
+        for (j = 0; j < y.length; j++) {
+          y[j].style.backgroundColor = args.currentValue.hex;
+        }
+        document.querySelector(".right-side").style['border-color'] =  args.currentValue.hex;
+      }
+    },
+    pageBg: function(args) {
+      document.querySelector(".right-side").style.backgroundColor =  args.currentValue.hex;
+    },
+    tileRender: function(args) {
+      args.element.classList.add("e-icons");
+      args.element.classList.add("e-custom-tile");
+    },
     exportPDF() {
       DomToImage.toPng(this.$refs.content)
         .then(function(dataUrl) {
@@ -956,32 +1054,35 @@ export default {
           console.error("something went wrong!", error);
         });
     },
-    addContact: function() {
+    // hide(){
+    //    this.active = !this.active;
+    // },
+    addContact() {
       this.contactList.push({
         contactName: "",
         value: "",
         empty: false,
       });
     },
-    addPersonality: function() {
+    addPersonality() {
       this.personality.push({
         personalDiscription: "",
       });
     },
-    addLanguage: function() {
+    addLanguage() {
       this.languages.push({
         languageName: "",
         level: "",
       });
     },
 
-    addSkill: function() {
+    addSkill() {
       this.skills.push({
         skillName: "",
         level: "",
       });
     },
-    addEducation: function() {
+    addEducation() {
       this.Education.push({
         startDate: "",
         endDate: "",
@@ -989,7 +1090,7 @@ export default {
         diploma: "",
       });
     },
-    addExperience: function() {
+    addExperience() {
       this.Experience.push({
         startDate: "",
         endDate: "",
@@ -997,17 +1098,62 @@ export default {
         posteTitle: "",
         tasks: "",
       });
-    }
+    },
   },
-  computed:{
-    parsedBody(){
-      return this.Experience[0].tasks.replace(/\n/g,"<br>")
-    }
-  }
+  computed: {
+    parsedBody() {
+      return this.Experience.tasks.replace(/\n/g, "<br>");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.e-colorpicker-wrapper {
+  width: 100% !important;
+}
+.e-container {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.e-container.e-color-palette {
+  width: inherit !important;
+}
+
+/* Tile customization styles */
+.e-container .e-palette .e-custom-tile {
+  border: 0;
+  color: #fff;
+  height: 36px;
+  font-size: 18px;
+  width: 36px;
+  line-height: 36px;
+  border-radius: 50%;
+  margin: 2px 5px;
+}
+
+.e-container .e-custom-palette.e-palette-group {
+  height: 182px;
+  width: 100%;
+}
+
+/* Selected state icon */
+.e-container .e-palette .e-custom-tile.e-selected::before {
+  content: "\e933";
+}
+
+.e-container .e-palette .e-custom-tile.e-selected {
+  outline: none;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
 .cv-form {
   background-color: #0d324c;
   padding: 24px;
@@ -1044,6 +1190,21 @@ a {
     font-size: 32px;
   }
 }
+.show {
+  display: none;
+}
+.edit {
+  i {
+    display: none;
+  }
+  &:hover {
+    i {
+      display: inline;
+      cursor: pointer;
+    }
+  }
+}
+
 section {
   margin-bottom: 24px;
   .section-title {

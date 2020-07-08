@@ -3,20 +3,21 @@ import App from "./App.vue";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import { library } from "@fortawesome/fontawesome-svg-core"
-import { faUserSecret } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
+import "font-awesome/css/font-awesome.min.css";
 import VueFilterDateFormat from "vue-filter-date-format";
-import VueCircleSlider from 'vue-circle-slider'
+import VueCircleSlider from 'vue-circle-slider';
+import { ColorPickerPlugin } from '@syncfusion/ej2-vue-inputs';
+import { DropDownButtonPlugin } from '@syncfusion/ej2-vue-splitbuttons';
+import { enableRipple } from '@syncfusion/ej2-base';
 
-Vue.use(VueCircleSlider)
+enableRipple(true);
 
+Vue.use(DropDownButtonPlugin);
+Vue.use(ColorPickerPlugin);
+Vue.use(VueCircleSlider);
 Vue.use(VueFilterDateFormat);
 
-library.add(faUserSecret)
-
-Vue.component("font-awesome-icon", FontAwesomeIcon)
-
+Vue.component('VueFontawesome', require('vue-fontawesome-icon/VueFontawesome.vue').default);
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
