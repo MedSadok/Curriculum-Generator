@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- The Form Input fields -->
-      <div class="col-lg-3 col-md-3 col-12 cv-form">
+      <div class="col-lg-3 col-md-12 col-12 cv-form">
         <h1 class="text-uppercase">Enter your data here:</h1>
         <form method="post">
           <div class="form-row" v-for="(app, a) in applicant" :key="a">
@@ -51,7 +51,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addContact">Add Contact</button>
+          <button class="btn btn-success" @click.prevent="addContact">
+            Add Contact
+          </button>
           <div class="form-group">
             <label for="personality">personality</label>
             <input
@@ -64,7 +66,24 @@
               v-model="personal.personalDiscription"
             />
           </div>
-          <button class="btn btn-success" @click.prevent="addPersonality">Add Personality</button>
+          <button class="btn btn-success" @click.prevent="addPersonality">
+            Add Personality
+          </button>
+          <div class="form-group">
+            <label for="hobbies">hobbies</label>
+            <input
+              v-for="(hobbie, i) in hobbies"
+              :key="i"
+              type="text"
+              class="form-control mb-2"
+              id="hobbies"
+              placeholder="Add your hobbies"
+              v-model="hobbie.hobbieDiscription"
+            />
+          </div>
+          <button class="btn btn-success" @click.prevent="addhobbie">
+            Add Hobbies
+          </button>
           <div class="form-group">
             <div class="form-row" v-for="(language, l) in languages" :key="l">
               <div class="form-group col-md-7">
@@ -92,7 +111,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addLanguage">Add Language</button>
+          <button class="btn btn-success" @click.prevent="addLanguage">
+            Add Language
+          </button>
           <div class="form-group">
             <div class="form-row" v-for="(skill, s) in skills" :key="s">
               <div class="form-group col-md-7">
@@ -120,7 +141,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addSkill">Add Skill</button>
+          <button class="btn btn-success" @click.prevent="addSkill">
+            Add Skill
+          </button>
           <div class="form-group">
             <div class="form-row" v-for="(edu, e) in Education" :key="e">
               <div class="form-group col-md-6">
@@ -153,11 +176,18 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="diploma">Diploma</label>
-                <input type="text" class="form-control" placeholder="Diploma" v-model="edu.diploma" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Diploma"
+                  v-model="edu.diploma"
+                />
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addEducation">Add Education</button>
+          <button class="btn btn-success" @click.prevent="addEducation">
+            Add Education
+          </button>
           <div class="form-group">
             <div class="form-row" v-for="(exp, ex) in Experience" :key="ex">
               <div class="form-group col-md-6">
@@ -181,7 +211,12 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="Name">Company</label>
-                <input type="text" class="form-control" placeholder="Company" v-model="exp.company" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company"
+                  v-model="exp.company"
+                />
               </div>
               <div class="form-group col-md-6">
                 <label for="posteTitle">Poste Title</label>
@@ -194,22 +229,39 @@
               </div>
               <div class="form-group col-md-12">
                 <label for="Tasks">Tasks</label>
-                <textarea class="form-control" id="Tasks" rows="5" v-model="exp.tasks"></textarea>
+                <textarea
+                  class="form-control"
+                  id="Tasks"
+                  rows="5"
+                  v-model="exp.tasks"
+                ></textarea>
               </div>
             </div>
           </div>
-          <button class="btn btn-success" @click.prevent="addExperience">Add Experience</button>
-          <div class="form-group">
+          <button class="btn btn-success" @click.prevent="addExperience">
+            Add Experience
+          </button>
+          <!-- <div class="form-group">
             <label for="CoverLetter">Cover Letter</label>
-            <textarea class="form-control text" id="CoverLetter" rows="5" v-model="CoverLetter"></textarea>
-          </div>
+            <textarea
+              class="form-control text"
+              id="CoverLetter"
+              rows="5"
+              v-model="CoverLetter"
+            ></textarea>
+          </div> -->
           <div class="form-group">
             <label for="Personal">Personal Description</label>
-            <textarea class="form-control text" id="Personal" rows="5" v-model="Personal"></textarea>
+            <textarea
+              class="form-control text"
+              id="Personal"
+              rows="5"
+              v-model="Personal"
+            ></textarea>
           </div>
         </form>
         <div class="wrap d-flex flex-column align-items-start mt-2">
-          <label>Choose left background olor</label>
+          <label class="text-left">Choose left background color</label>
           <ejs-colorpicker
             value="#131313"
             :columns="4"
@@ -221,7 +273,7 @@
           ></ejs-colorpicker>
         </div>
         <div class="wrap d-flex flex-column align-items-start">
-          <label>Choose Right background color</label>
+          <label class="text-left">Choose Right background color</label>
           <ejs-colorpicker
             value="#fff"
             :inline="false"
@@ -231,7 +283,7 @@
           ></ejs-colorpicker>
         </div>
         <div class="wrap d-flex flex-column align-items-start">
-          <label>Choose font-Color</label>
+          <label class="text-left">Choose font color</label>
           <ejs-colorpicker
             value="#d72626"
             :columns="4"
@@ -248,19 +300,8 @@
         </button>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
       <!-- The Curriculum output -->
-      <div class="col-lg-9 col-md-9 col-12 px-5 py-3">
+      <div class="col-lg-9 col-md-12 col-12 py-3">
         <div class="row downloadable" ref="content">
           <div class="col-lg-4 col-md-4 col-12 p-0 left-side" id="preview">
             <div class="avatar">
@@ -284,7 +325,7 @@
                     <div class="col-lg-7 col-md-7 col-12">
                       <h2 class="h2-title text-uppercase">Contact</h2>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-12">
+                    <div class="col-lg-5 col-md-4 col-12">
                       <hr />
                     </div>
                   </div>
@@ -319,9 +360,7 @@
                       :key="k"
                     >
                       <span class="text-capitilaze mr-3">
-                        {{
-                        contact.contactName
-                        }}
+                        {{ contact.contactName }}
                       </span>
                       <a class="mb-0">{{ contact.value }}</a>
                     </div>
@@ -334,11 +373,14 @@
                     <div class="col-lg-7 col-md-7 col-12">
                       <h2 class="h2-title text-uppercase">personality</h2>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-12">
+                    <div class="col-lg-5 col-md-4 col-12">
                       <hr />
                     </div>
                   </div>
-                  <ul class="personality" v-if="personality[0].personalDiscription.length == 0">
+                  <ul
+                    class="personality"
+                    v-if="personality[0].personalDiscription.length == 0"
+                  >
                     <li>Communicative</li>
                     <li>Punctuality</li>
                     <li>Creativity</li>
@@ -349,10 +391,35 @@
                     <li>Organized</li>
                   </ul>
                   <ul class="personality" v-else>
-                    <li
-                      v-for="(personal, i) in personality"
-                      :key="i"
-                    >{{ personal.personalDiscription }}</li>
+                    <li v-for="(personal, i) in personality" :key="i">
+                      {{ personal.personalDiscription }}
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <section>
+                <div class="d-flex flex-column justify-content-between">
+                  <div class="row section-title align-items-center">
+                    <div class="col-lg-7 col-md-7 col-12">
+                      <h2 class="h2-title text-uppercase">hobbies</h2>
+                    </div>
+                    <div class="col-lg-5 col-md-4 col-12">
+                      <hr />
+                    </div>
+                  </div>
+                  <ul
+                    class="hobbie"
+                    v-if="hobbies[0].hobbieDiscription.length == 0"
+                  >
+                    <li>High-Tech</li>
+                    <li>Football</li>
+                    <li>Basketball</li>
+                    <li>Film & Series</li>
+                  </ul>
+                  <ul class="hobbie" v-else>
+                    <li v-for="(hobbie, i) in hobbies" :key="i">
+                      {{ hobbie.hobbieDiscription }}
+                    </li>
                   </ul>
                 </div>
               </section>
@@ -362,7 +429,7 @@
                     <div class="col-lg-7 col-md-7 col-12">
                       <h2 class="h2-title text-uppercase">Languages</h2>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-12">
+                    <div class="col-lg-5 col-md-4 col-12">
                       <hr />
                     </div>
                   </div>
@@ -415,7 +482,10 @@
                         <span>{{ language.languageName }}</span>
                       </div>
                       <div class="col-lg-8 col-md-8 col-6">
-                        <label class="level" :style="{ width: language.level + '%' }"></label>
+                        <label
+                          class="level"
+                          :style="{ width: language.level + '%' }"
+                        ></label>
                       </div>
                     </li>
                   </ul>
@@ -424,393 +494,368 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-          <div class="col-lg-8 col-md-8 col-12 bg-gray pt-5 right-side">
-            <section>
-              <div class="text-center text-uppercase">
-                <div class="row align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12"></div>
-                  <div class="col-lg-7 col-md-7 col-12">
-                    <hr />
+          <div class="col-lg-8 col-md-8 col-12 d-flex bg-gray">
+            <div class="right-side">
+              <section>
+                <div class="text-center text-uppercase">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-4 col-12"></div>
+                    <div class="col-lg-7 col-md-7 col-12">
+                      <hr />
+                    </div>
+                  </div>
+                  <div
+                    class="cv-header"
+                    v-if="
+                      applicant[0].name.length == 0 &&
+                        applicant[0].PosteTitle.length == 0
+                    "
+                  >
+                    <h1 class="text-uppercase">ophelia stevenson</h1>
+                    <small class="text-uppercase"
+                      >graphic and web designe</small
+                    >
+                  </div>
+                  <div
+                    class="cv-header"
+                    v-else
+                    v-for="(app, index) in applicant"
+                    :key="index"
+                  >
+                    <h1 class="text-uppercase">{{ app.name }}</h1>
+                    <small class="text-uppercase">{{ app.PosteTitle }}</small>
                   </div>
                 </div>
-                <div
-                  class="cv-header"
-                  v-if="
-                    applicant[0].name.length == 0 &&
-                      applicant[0].PosteTitle.length == 0
-                  "
+              </section>
+              <div class="cv-body container">
+                
+                <section :class="{ showPersonal: !showPersonal }">
+                  <div class="row section-title align-items-center">
+                    <div class="col-lg-5 col-md-4 col-12">
+                      <h2 class="h2-title text-uppercase">personal</h2>
+                    </div>
+                    <div
+                      class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                      @click="showPersonal = !showPersonal"
+                    >
+                      <hr />
+                      <vue-fontawesome
+                        icon="trash"
+                        size="1"
+                        color="#d72626"
+                      ></vue-fontawesome>
+                    </div>
+                  </div>
+                  <div
+                    class="row align-items-baseline"
+                    v-if="Personal.length == 0"
+                  >
+                    <div class="d-flex flex-column justify-content-end">
+                      <p class="pl-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Vitae placeat cumque suscipit quo commodi eaque qui,
+                        alias culpa pariatur nobis. Magni aut aperiam assumenda
+                        est ducimus cumque, porro commodi unde?
+                      </p>
+                      <p class="pl-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Vitae placeat cumque suscipit quo commodi eaque qui,
+                        alias culpa pariatur nobis. Magni aut aperiam assumenda
+                        est ducimus cumque, porro commodi unde?
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row align-items-baseline" v-else>
+                    <div class="d-flex flex-column justify-content-end">
+                      <p class="pl-3">{{ Personal }}</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section
+                  class="item"
+                  :class="{ showEducation: !showEducation }"
                 >
-                  <h1 class="text-uppercase">ophelia stevenson</h1>
-                  <small class="text-uppercase">graphic and web designe</small>
-                </div>
-                <div class="cv-header" v-else v-for="(app, index) in applicant" :key="index">
-                  <h1 class="text-uppercase">{{ app.name }}</h1>
-                  <small class="text-uppercase">{{ app.PosteTitle }}</small>
-                </div>
+                  <div class="row section-title align-items-center">
+                    <div class="col-lg-5 col-md-4 col-12">
+                      <h2 class="h2-title text-uppercase">education</h2>
+                    </div>
+                    <div
+                      class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                      @click="showEducation = !showEducation"
+                    >
+                      <hr />
+                      <vue-fontawesome
+                        icon="trash"
+                        size="1"
+                        color="#d72626"
+                      ></vue-fontawesome>
+                    </div>
+                  </div>
+
+                  <div
+                    class="row align-items-baseline"
+                    v-if="
+                      Education[0].startDate.length == 0 &&
+                        Education[0].endDate.length == 0 &&
+                        Education[0].establishement.length == 0 &&
+                        Education[0].diploma.length == 0
+                    "
+                  >
+                    <div class="col-lg-3 col-md-3 col-12">
+                      <span class="date">2012-2014</span>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                      <h3 class="h2-title">Lorem Ipsum</h3>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Repudiandae voluptas aspernatur molestiae quasi
+                        eius nesciunt maxime sunt, qui, eos enim magnam itaque
+                        reiciendis! Dignissimos autem, totam error maiores
+                        recusandae provident.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="row align-items-baseline"
+                    v-if="
+                      Education[0].startDate.length == 0 &&
+                        Education[0].endDate.length == 0 &&
+                        Education[0].establishement.length == 0 &&
+                        Education[0].diploma.length == 0
+                    "
+                  >
+                    <div class="col-lg-3 col-md-3 col-12">
+                      <span class="date">2014-2016</span>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                      <h3 class="h2-title">Lorem Ipsum</h3>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Repudiandae voluptas aspernatur molestiae quasi
+                        eius nesciunt maxime sunt, qui, eos enim magnam itaque
+                        reiciendis! Dignissimos autem, totam error maiores
+                        recusandae provident.
+                      </p>
+                    </div>
+                  </div>
+                  <draggable
+                    draggble="item"
+                    ghost-class="ghost"
+                    :animation="200"
+                    v-else
+                  >
+                    <transition-group type="transition" name="flip-list">
+                      <div
+                        class="row align-items-baseline"
+                        v-for="(edu, i) in Education"
+                        :key="i"
+                      >
+                        <div class="col-lg-3 col-md-3 col-12">
+                          <span class="date"
+                            >{{ edu.startDate }} - {{ edu.endDate }}</span
+                          >
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-12">
+                          <h3 class="h2-title text-uppercase">
+                            {{ edu.establishement }}
+                          </h3>
+                          <p class="text-capitalize">{{ edu.diploma }}</p>
+                        </div>
+                      </div>
+                    </transition-group>
+                  </draggable>
+                </section>
+
+                <section
+                  class="item"
+                  :class="{ showExperience: !showExperience }"
+                >
+                  <div class="row section-title align-items-center">
+                    <div class="col-lg-5 col-md-4 col-12">
+                      <h2 class="h2-title text-uppercase">experience</h2>
+                    </div>
+                    <div
+                      class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                      @click="showExperience = !showExperience"
+                    >
+                      <hr />
+                      <vue-fontawesome
+                        icon="trash"
+                        size="1"
+                        color="#d72626"
+                      ></vue-fontawesome>
+                    </div>
+                  </div>
+                  <div
+                    class="row align-items-baseline"
+                    v-if="
+                      Experience[0].startDate.length == 0 &&
+                        Experience[0].endDate.length == 0 &&
+                        Experience[0].company.length == 0 &&
+                        Experience[0].posteTitle.length == 0 &&
+                        Experience[0].tasks.length == 0
+                    "
+                  >
+                    <div class="col-lg-3 col-md-3 col-12">
+                      <span class="date">2014-2016</span>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                      <h3 class="h2-title">Poste Title at Workname</h3>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Repudiandae voluptas aspernatur molestiae quasi
+                        eius nesciunt maxime sunt, qui, eos enim magnam itaque
+                        reiciendis! Dignissimos autem, totam error maiores
+                        recusandae provident.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="row align-items-baseline"
+                    v-if="
+                      Experience[0].startDate.length == 0 &&
+                        Experience[0].endDate.length == 0 &&
+                        Experience[0].company.length == 0 &&
+                        Experience[0].posteTitle.length == 0 &&
+                        Experience[0].tasks.length == 0
+                    "
+                  >
+                    <div class="col-lg-3 col-md-3 col-12">
+                      <span class="date">2012-2014</span>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                      <h3 class="h2-title">Poste Title at Workname</h3>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Repudiandae voluptas aspernatur molestiae quasi
+                        eius nesciunt maxime sunt, qui, eos enim magnam itaque
+                        reiciendis! Dignissimos autem, totam error maiores
+                        recusandae provident.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="row align-items-baseline"
+                    v-if="
+                      Experience[0].startDate.length == 0 &&
+                        Experience[0].endDate.length == 0 &&
+                        Experience[0].company.length == 0 &&
+                        Experience[0].posteTitle.length == 0 &&
+                        Experience[0].tasks.length == 0
+                    "
+                  >
+                    <div class="col-lg-3 col-md-3 col-12">
+                      <span class="date">2014-2016</span>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                      <h3 class="h2-title">Poste Title at Workname</h3>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Repudiandae voluptas aspernatur molestiae quasi
+                        eius nesciunt maxime sunt, qui, eos enim magnam itaque
+                        reiciendis! Dignissimos autem, totam error maiores
+                        recusandae provident.
+                      </p>
+                    </div>
+                  </div>
+                  <draggable
+                    draggble="item"
+                    ghost-class="ghost"
+                    :animation="200"
+                    v-else
+                  >
+                    <transition-group type="transition" name="flip-list">
+                      <div
+                        class="row align-items-baseline"
+                        v-for="(exp, e) in Experience"
+                        :key="e"
+                      >
+                        <div class="col-lg-3 col-md-3 col-12">
+                          <span class="date"
+                            >{{ exp.startDate }}- {{ exp.endDate }}</span
+                          >
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-12">
+                          <h3 class="h2-title text-uppercase">
+                            {{ exp.posteTitle }} at {{ exp.company }}
+                          </h3>
+                          <p class="text-capitalize">{{ exp.tasks }}</p>
+                        </div>
+                      </div>
+                    </transition-group>
+                  </draggable>
+                </section>
+
+                <section :class="{ showSkills: !showSkills }">
+                  <div class="row section-title align-items-center">
+                    <div class="col-lg-5 col-md-4 col-12">
+                      <h2 class="h2-title text-uppercase">skills</h2>
+                    </div>
+                    <div
+                      class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit"
+                      @click="showSkills = !showSkills"
+                    >
+                      <hr />
+                      <vue-fontawesome
+                        icon="trash"
+                        size="1"
+                        color="#d72626"
+                      ></vue-fontawesome>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex justify-content-around flex-wrap"
+                    v-if="
+                      skills[0].skillName.length == 0 &&
+                        skills[0].level.length == 0
+                    "
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center position-relative"
+                      v-for="(s, index) in skills"
+                      :key="index"
+                    >
+                      <circle-slider
+                        v-model="s.level"
+                        circle-color="rgba(0, 0, 0, .3)"
+                        progress-color="#000"
+                        knob-color="transparent"
+                        circleWidth="10"
+                        progressWidth="10"
+                        class="progress-circle"
+                      ></circle-slider>
+                      <span class="skillName">{{ s.skillName }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-around flex-wrap" v-else>
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center position-relative"
+                      v-for="(skill, index) in skills"
+                      :key="index"
+                    >
+                      <circle-slider
+                        v-model="skill.level"
+                        circle-color="rgba(0, 0, 0, .3)"
+                        progress-color="#000"
+                        knob-color="transparent"
+                        :circleWidth="10"
+                        :progressWidth="10"
+                        class="progress-circle"
+                      ></circle-slider>
+                      <span class="skillName">{{ skill.skillName }}</span>
+                    </div>
+                  </div>
+                </section>
               </div>
-            </section>
-            <div class="cv-body container">
-              <section :class="{ showCover: !showCover }">
-                <div class="row section-title align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="h2-title text-uppercase">Cover Letter</h2>
-                  </div>
-                  <div
-                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit" @click=" showCover = !showCover"
-                  >
-                    <hr />
-                    <vue-fontawesome icon="trash" size="1" color="#d72626"></vue-fontawesome>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline w-100" v-if="CoverLetter.length == 0">
-                  <div class="d-flex flex-column justify-content-end">
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Commodi voluptates recusandae sit corrupti quod, laborum
-                      neque consequatur delectus vero ratione quasi non quis
-                      ipsum cum aperiam deleniti, minus culpa ipsa?
-                    </p>
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Commodi voluptates recusandae sit corrupti quod, laborum
-                      neque consequatur delectus vero ratione quasi non quis
-                      ipsum cum aperiam deleniti, minus culpa ipsa?
-                    </p>
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Commodi voluptates recusandae sit corrupti quod, laborum
-                      neque consequatur delectus vero ratione quasi non quis
-                      ipsum cum aperiam deleniti, minus culpa ipsa?
-                    </p>
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Commodi voluptates recusandae sit corrupti quod, laborum
-                      neque consequatur delectus vero ratione quasi non quis
-                      ipsum cum aperiam deleniti, minus culpa ipsa?
-                    </p>
-                    <div class="d-flex flex-column align-items-end">
-                      <h4 class="text-uppercase" v-if="applicant[0].name.length == 0">Applicant Name</h4>
-                      <h4
-                        class="text-uppercase"
-                        v-else
-                        v-for="(app, index) in applicant"
-                        :key="index"
-                      >{{ app.name }}</h4>
-                      <small>
-                        {{
-                        new Date()
-                        | dateFormat("DD MMMM YYYY", dateFormatConfig)
-                        }}
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline w-100" v-else>
-                  <div class="d-flex flex-column justify-content-end">
-                    <p>{{ CoverLetter }}</p>
-                    <div class="d-flex flex-column align-items-end">
-                      <h4>Applicant Name</h4>
-                      <small>12 November 2020</small>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <section :class="{ showPersonal: !showPersonal }">
-                <div class="row section-title align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="h2-title text-uppercase">personal</h2>
-                  </div>
-                  <div
-                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit" @click=" showPersonal = !showPersonal"
-                  >
-                    <hr />
-                    <vue-fontawesome icon="trash" size="1" color="#d72626"></vue-fontawesome>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline" v-if="Personal.length == 0">
-                  <div class="d-flex flex-column justify-content-end">
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vitae placeat cumque suscipit quo commodi eaque qui, alias
-                      culpa pariatur nobis. Magni aut aperiam assumenda est
-                      ducimus cumque, porro commodi unde?
-                    </p>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vitae placeat cumque suscipit quo commodi eaque qui, alias
-                      culpa pariatur nobis. Magni aut aperiam assumenda est
-                      ducimus cumque, porro commodi unde?
-                    </p>
-                  </div>
-                </div>
-                <div class="row px-3 align-items-baseline" v-else>
-                  <div class="d-flex flex-column justify-content-end">
-                    <p>{{ Personal }}</p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="item" :class="{ showEducation: !showEducation }">
-                <div class="row section-title align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="h2-title text-uppercase">education</h2>
-                  </div>
-                  <div
-                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit" @click=" showEducation = !showEducation"
-                  >
-                    <hr />
-                    <vue-fontawesome icon="trash" size="1" color="#d72626"></vue-fontawesome>
-                  </div>
-                </div>
-
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-if="
-                    Education[0].startDate.length == 0 &&
-                      Education[0].endDate.length == 0 &&
-                      Education[0].establishement.length == 0 &&
-                      Education[0].diploma.length == 0
-                  "
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2012-2014</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="h2-title">Lorem Ipsum</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-if="
-                    Education[0].startDate.length == 0 &&
-                      Education[0].endDate.length == 0 &&
-                      Education[0].establishement.length == 0 &&
-                      Education[0].diploma.length == 0
-                  "
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2014-2016</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="h2-title">Lorem Ipsum</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <draggable draggble="item" ghost-class="ghost" :animation="200" v-else>
-                  <transition-group type="transition" name="flip-list">
-                    <div
-                      class="row px-3 align-items-baseline"
-                      v-for="(edu, i) in Education"
-                      :key="i"
-                    >
-                      <div class="col-lg-3 col-md-3 col-12">
-                        <span class="date">{{ edu.startDate }} - {{ edu.endDate }}</span>
-                      </div>
-                      <div class="col-lg-9 col-md-9 col-12">
-                        <h3 class="h2-title text-uppercase">{{ edu.establishement }}</h3>
-                        <p class="text-capitalize">{{ edu.diploma }}</p>
-                      </div>
-                    </div>
-                  </transition-group>
-                </draggable>
-              </section>
-
-              <section class="item" :class="{ showExperience: !showExperience }">
-                <div class="row section-title align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="h2-title text-uppercase">experience</h2>
-                  </div>
-                  <div
-                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit" @click=" showExperience = !showExperience"
-                  >
-                    <hr />
-                    <vue-fontawesome icon="trash" size="1" color="#d72626"></vue-fontawesome>
-                  </div>
-                </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-if="
-                    Experience[0].startDate.length == 0 &&
-                      Experience[0].endDate.length == 0 &&
-                      Experience[0].company.length == 0 &&
-                      Experience[0].posteTitle.length == 0 &&
-                      Experience[0].tasks.length == 0
-                  "
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2014-2016</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="h2-title">Poste Title at Workname</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-if="
-                    Experience[0].startDate.length == 0 &&
-                      Experience[0].endDate.length == 0 &&
-                      Experience[0].company.length == 0 &&
-                      Experience[0].posteTitle.length == 0 &&
-                      Experience[0].tasks.length == 0
-                  "
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2012-2014</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="h2-title">Poste Title at Workname</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="row px-3 align-items-baseline"
-                  v-if="
-                    Experience[0].startDate.length == 0 &&
-                      Experience[0].endDate.length == 0 &&
-                      Experience[0].company.length == 0 &&
-                      Experience[0].posteTitle.length == 0 &&
-                      Experience[0].tasks.length == 0
-                  "
-                >
-                  <div class="col-lg-3 col-md-3 col-12">
-                    <span class="date">2014-2016</span>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-12">
-                    <h3 class="h2-title">Poste Title at Workname</h3>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Repudiandae voluptas aspernatur molestiae quasi eius
-                      nesciunt maxime sunt, qui, eos enim magnam itaque
-                      reiciendis! Dignissimos autem, totam error maiores
-                      recusandae provident.
-                    </p>
-                  </div>
-                </div>
-                <draggable draggble="item" ghost-class="ghost" :animation="200" v-else>
-                  <transition-group type="transition" name="flip-list">
-                    <div
-                      class="row px-3 align-items-baseline"
-                      v-for="(exp, e) in Experience"
-                      :key="e"
-                    >
-                      <div class="col-lg-3 col-md-3 col-12">
-                        <span class="date">{{ exp.startDate }}- {{ exp.endDate }}</span>
-                      </div>
-                      <div class="col-lg-9 col-md-9 col-12">
-                        <h3
-                          class="h2-title text-uppercase"
-                        >{{ exp.posteTitle }} at {{ exp.company }}</h3>
-                        <p class="text-capitalize">{{ exp.tasks }}</p>
-                      </div>
-                    </div>
-                  </transition-group>
-                </draggable>
-              </section>
-
-              <section :class="{ showSkills: !showSkills }">
-                <div class="row section-title align-items-center">
-                  <div class="col-lg-5 col-md-5 col-12">
-                    <h2 class="h2-title text-uppercase">skills</h2>
-                  </div>
-                  <div
-                    class="col-lg-7 col-md-7 col-12 d-flex justify-content-between align-items-center edit" @click=" showSkills = !showSkills"
-                  >
-                    <hr />
-                    <vue-fontawesome icon="trash" size="1" color="#d72626"></vue-fontawesome>
-                  </div>
-                </div>
-                <div
-                  class="d-flex justify-content-around flex-wrap"
-                  v-if="
-                    skills[0].skillName.length == 0 &&
-                      skills[0].level.length == 0
-                  "
-                >
-                  <div
-                    class="d-flex flex-column justify-content-center align-items-center position-relative"
-                    v-for="(s, index) in skills"
-                    :key="index"
-                  >
-                    <circle-slider
-                      v-model="s.level"
-                      circle-color="rgba(0, 0, 0, .3)"
-                      progress-color="#000"
-                      knob-color="transparent"
-                      circleWidth="10"
-                      progressWidth="10"
-                      class="progress-circle"
-                    ></circle-slider>
-                    <span class="skillName">{{ s.skillName }}</span>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-around flex-wrap" v-else>
-                  <div
-                    class="d-flex flex-column justify-content-center align-items-center position-relative"
-                    v-for="(skill, index) in skills"
-                    :key="index"
-                  >
-                    <circle-slider
-                      v-model="skill.level"
-                      circle-color="rgba(0, 0, 0, .3)"
-                      progress-color="#000"
-                      knob-color="transparent"
-                      :circleWidth="10"
-                      :progressWidth="10"
-                      class="progress-circle"
-                    ></circle-slider>
-                    <span class="skillName">{{ skill.skillName }}</span>
-                  </div>
-                </div>
-              </section>
             </div>
+            <div class="border-side"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
-
-
-
-
-
-
 
 <script>
 /* eslint-disable */
@@ -825,11 +870,10 @@ export default {
     VueCircleSlider,
     draggable,
     PictureInput,
-    ColorPickerPlugin
+    ColorPickerPlugin,
   },
   data() {
     return {
-      showCover: true,
       showPersonal: true,
       showEducation: true,
       showExperience: true,
@@ -837,29 +881,33 @@ export default {
       applicant: [
         {
           name: "",
-          PosteTitle: ""
-        }
+          PosteTitle: "",
+        },
       ],
-      CoverLetter: "",
       Personal: "",
       contactList: [
         {
           contactName: "",
-          value: ""
-        }
+          value: "",
+        },
       ],
       personality: [
         {
-          personalDiscription: ""
-        }
+          personalDiscription: "",
+        },
+      ],
+      hobbies: [
+        {
+          hobbieDiscription: "",
+        },
       ],
       Education: [
         {
           startDate: "",
           endDate: "",
           establishement: "",
-          diploma: ""
-        }
+          diploma: "",
+        },
       ],
       Experience: [
         {
@@ -867,32 +915,32 @@ export default {
           endDate: "",
           company: "",
           posteTitle: "",
-          tasks: ""
-        }
+          tasks: "",
+        },
       ],
       skills: [
         {
           skillName: "JavaScript",
-          level: 60
+          level: 60,
         },
         {
           skillName: "jQuery",
-          level: 70
+          level: 70,
         },
         {
           skillName: "HTML5",
-          level: 100
+          level: 100,
         },
         {
           skillName: "CSS3",
-          level: 90
-        }
+          level: 90,
+        },
       ],
       languages: [
         {
           languageName: "",
-          level: ""
-        }
+          level: "",
+        },
       ],
       fill: { color: "#000" },
       dateFormatConfig: {
@@ -903,7 +951,7 @@ export default {
           "Wednesday",
           "Thursday",
           "Friday",
-          "Saturday"
+          "Saturday",
         ],
         dayOfWeekNamesShort: ["Su", "Mo", "Tu", "We", "Tr", "Fr", "Sa"],
         monthNames: [
@@ -918,7 +966,7 @@ export default {
           "September",
           "October",
           "November",
-          "December"
+          "December",
         ],
         monthNamesShort: [
           "Jan",
@@ -932,9 +980,9 @@ export default {
           "Sep",
           "Oct",
           "Nov",
-          "Dec"
-        ]
-      }
+          "Dec",
+        ],
+      },
     };
   },
   methods: {
@@ -951,7 +999,7 @@ export default {
         args.currentValue.hex;
     },
     onChangeFont: function(args) {
-      var x = document.querySelectorAll("h1, .h2-title");
+      var x = document.querySelectorAll(".cv-header h1, .h2-title");
       var y = document.querySelectorAll("hr, .language .level");
       var i, j;
       for (i = 0; i < x.length; i++) {
@@ -990,25 +1038,30 @@ export default {
       this.contactList.push({
         contactName: "",
         value: "",
-        empty: false
+        empty: false,
       });
     },
     addPersonality() {
       this.personality.push({
-        personalDiscription: ""
+        personalDiscription: "",
+      });
+    },
+    addhobbie() {
+      this.hobbies.push({
+        hobbieDiscription: "",
       });
     },
     addLanguage() {
       this.languages.push({
         languageName: "",
-        level: ""
+        level: "",
       });
     },
 
     addSkill() {
       this.skills.push({
         skillName: "",
-        level: ""
+        level: "",
       });
     },
     addEducation() {
@@ -1016,7 +1069,7 @@ export default {
         startDate: "",
         endDate: "",
         establishement: "",
-        diploma: ""
+        diploma: "",
       });
     },
     addExperience() {
@@ -1025,24 +1078,23 @@ export default {
         endDate: "",
         company: "",
         posteTitle: "",
-        tasks: ""
+        tasks: "",
       });
-    }
+    },
   },
   computed: {
     parsedBody() {
       return this.Experience.tasks.replace(/\n/g, "<br>");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
-
 .e-colorpicker-wrapper {
   width: 100% !important;
 }
+
 .e-container {
   background-color: transparent;
   border-color: transparent;
@@ -1077,6 +1129,10 @@ export default {
 
 .e-container .e-palette .e-custom-tile.e-selected {
   outline: none;
+}
+
+.downloadable{
+  padding: 0px 48px;
 }
 
 .wrap {
@@ -1121,7 +1177,11 @@ a {
     font-size: 32px;
   }
 }
-.showCover,.showPersonal, .showEducation, .showExperience, .showSkills {
+.showCover,
+.showPersonal,
+.showEducation,
+.showExperience,
+.showSkills {
   display: none !important;
 }
 .edit {
@@ -1215,7 +1275,13 @@ img {
   height: 400px;
 }
 .right-side {
-  border-right: 8px solid #d72626;
+  margin-right: 4px;
+  padding-top: 48px;
+}
+.border-side{
+  background-color: #d72626;
+  height: 100%;
+  width: 8px;
 }
 
 span.date {
@@ -1265,7 +1331,10 @@ h3 {
     color: #fff;
   }
 }
-
+svg {
+  height: 125px !important;
+  width: 125px !important;
+}
 .skillName {
   position: absolute;
   top: 40%;
@@ -1273,6 +1342,12 @@ h3 {
   font-size: 14px;
   font-weight: 600;
   word-wrap: break-word;
+  width: 75%;
+}
+
+.language .level{
+  height: 15px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -1288,5 +1363,49 @@ h3 {
   h2 {
     font-size: 20px;
   }
+  .downloadable{
+    padding: 0px 8px;
+  }
+  .border-side {
+    width: 16px;
+  }
+  .preview-container {
+    margin: 0px;
+    max-width: 100% !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .preview-container {
+    margin: 0px;
+    max-width: 100% !important;
+  }
+  a:not([href]) {
+    font-size: 14px;
+    word-break: break-word;
+  }
+  ul.personality li{
+    font-size: 12px;
+  }
+  hr {
+    width: 150px;
+  }
+  .cv-header h1 {
+    font-size: 32px;
+  }
+  .cv-header small {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .downloadable{
+    padding: 0px 8px;
+  }
+  .border-side {
+    width: 8px;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1366px){
+
 }
 </style>
