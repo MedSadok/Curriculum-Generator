@@ -11,7 +11,7 @@
         "@syncfusion/ej2-vue-grids": "^18.2.44",
         "@syncfusion/ej2-vue-inputs": "^18.2.44",
         "@syncfusion/ej2-vue-splitbuttons": "^18.2.44",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bootstrap-vue": "^2.15.0",
         "core-js": "^3.6.5",
         "dom-to-image": "^2.6.0",
